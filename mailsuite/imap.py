@@ -14,13 +14,10 @@ logger = logging.getLogger(__name__)
 class MaxRetriesExceeded(RuntimeError):
     """Raised when the maximum number of retries in exceeded"""
 
-
 def _chunks(list_like_object, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(list_like_object), n):
         yield list_like_object[i:i + n]
-
-imapclient.IMAPClient.fet
 
 class IMAPClient(imapclient.IMAPClient):
     """A simplified IMAP client"""
