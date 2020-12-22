@@ -70,20 +70,20 @@ class IMAPClient(imapclient.IMAPClient):
                     self.idle(self)
                 responses = self.idle_check(timeout=idle_timeout)
                 if responses is not None:
-                    if len(responses) == 0:
-                        # Gmail/G-Suite returns an empty list
-                        self.idle_done()
-                        idle_callback(self)
-                        idle_start_time = time.monotonic()
-                        self.idle()
-                    else:
-                        for r in responses:
-                            if r[0] != 0 and r[1] == b'RECENT':
-                                self.idle_done()
-                                idle_callback(self)
-                                idle_start_time = time.monotonic()
-                                self.idle()
-                                break
+                    # if len(responses) == 0:
+                    #     # Gmail/G-Suite returns an empty list
+                    #     self.idle_done()
+                    #     idle_callback(self)
+                    #     idle_start_time = time.monotonic()
+                    #     self.idle()
+                    # else:
+                    for r in responses:
+                        if r[0] != 0 and r[1] == b'RECENT':
+                            self.idle_done()
+                            idle_callback(self)
+                            idle_start_time = time.monotonic()
+                            self.idle()
+                            break
             except (KeyError, socket.error, BrokenPipeError,
                     ConnectionResetError):
                 logger.debug("IMAP error: Connection reset")
