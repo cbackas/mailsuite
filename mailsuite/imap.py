@@ -20,6 +20,7 @@ def _chunks(list_like_object, n):
     for i in range(0, len(list_like_object), n):
         yield list_like_object[i:i + n]
 
+imapclient.IMAPClient.fet
 
 class IMAPClient(imapclient.IMAPClient):
     """A simplified IMAP client"""
@@ -67,7 +68,7 @@ class IMAPClient(imapclient.IMAPClient):
                     logger.info("IMAP: Refreshing IDLE session")
                     self.idle_done()
                     idle_start_time = time.monotonic()
-                    self.idle(self)
+                    self.idle()
                 responses = self.idle_check(timeout=idle_timeout)
                 if responses is not None:
                     # if len(responses) == 0:
